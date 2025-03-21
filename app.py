@@ -29,6 +29,7 @@ def get_jwt():
     except Exception as e:
         return None
         
+#DONT EDIT
 def Encrypt_ID(x):
     x = int(x)
     dec = ['80', '81', '82', '83', '84', '85', '86', '87', '88', '89', '8a', '8b', '8c', '8d', '8e', '8f', '90', '91', '92', '93', '94', '95', '96', '97', '98', '99', '9a', '9b', '9c', '9d', '9e', '9f', 'a0', 'a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'aa', 'ab', 'ac', 'ad', 'ae', 'af', 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9', 'ba', 'bb', 'bc', 'bd', 'be', 'bf', 'c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'ca', 'cb', 'cc', 'cd', 'ce', 'cf', 'd0', 'd1', 'd2', 'd3', 'd4', 'd5', 'd6', 'd7', 'd8', 'd9', 'da', 'db', 'dc', 'dd', 'de', 'df', 'e0', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8', 'e9', 'ea', 'eb', 'ec', 'ed', 'ee', 'ef', 'f0', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'fa', 'fb', 'fc', 'fd', 'fe', 'ff']
@@ -88,7 +89,7 @@ def get_available_room(input_text):
     parsed_results_dict = parse_results(parsed_results)
     return json.dumps(parsed_results_dict)
 
-@app.route('/api/info', methods=['GET'])
+@app.route('/api/player-info', methods=['GET'])
 def get_player_info():
     try:
         player_id = request.args.get('id')
@@ -96,7 +97,7 @@ def get_player_info():
             return jsonify({
                 "status": "error",
                 "message": "Player ID is required",
-                "credits": "realpega",
+                "credits": "TEAM-AKIRU",
                 "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }), 400
 
@@ -105,7 +106,7 @@ def get_player_info():
             return jsonify({
                 "status": "error",
                 "message": "Failed to generate JWT token",
-                "credits": "realpega",
+                "credits": "TEAM-AKIRU",
                 "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }), 500
 
@@ -122,7 +123,7 @@ def get_player_info():
             'Host': 'clientbp.ggblueshark.com',
             'Connection': 'Keep-Alive',
             'Accept-Encoding': 'gzip'
-        }
+        } # CHANGE THIS API DEPENDING ON WHICH REGIONS YOU WANT IT TO WORK. 
 
         response = requests.post(url, headers=headers, data=data, verify=False)
 
@@ -150,7 +151,7 @@ def get_player_info():
                         "name": parsed_data["8"]["data"]["2"]["data"]
                     }
                 except:
-                    player_data["animal"] = null
+                    player_data["animal"] = None
 
                 try:
                     player_data["Guild"] = {
@@ -168,13 +169,13 @@ def get_player_info():
                         }
                     }
                 except:
-                    player_data["Guild"] = null
+                    player_data["Guild"] = None
 
                 return jsonify({
                     "status": "success",
                     "message": "Player information retrieved successfully",
                     "data": player_data,
-                    "credits": "realpega",
+                    "credits": "TEAM-AKIRU",
                     "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 })
 
@@ -182,14 +183,14 @@ def get_player_info():
                 return jsonify({
                     "status": "error",
                     "message": f"Failed to parse player information: {str(e)}",
-                    "credits": "realpega",
+                    "credits": "TEAM-AKIRU",
                     "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 }), 500
 
         return jsonify({
             "status": "error",
             "message": f"API request failed with status code: {response.status_code}",
-            "credits": "realpega",
+            "credits": "TEAM-AKIRU",
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }), response.status_code
 
@@ -197,9 +198,12 @@ def get_player_info():
         return jsonify({
             "status": "error",
             "message": f"An unexpected error occurred: {str(e)}",
-            "credits": "realpega",
+            "credits": "TEAM-AKIRU",
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+   
+  
+# Share with credits TEAM-AKIRU
